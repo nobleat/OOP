@@ -1,20 +1,24 @@
+from bankaccount import BankAccount
+
+
+
 class User:
     bank_name = "First National Dojo"
     def __init__(self, name, email_address):
         self.name = name
         self.email = email_address
-        self.account_balance = 0
-    def make_deposit(self,amount):
-        self.account_balance+= amount
+        self.account = BankAccount(.02,0)
+    def deposit(self, amount):
+        self.account.deposit(amount)
         return self
-    def make_withdrawl(self, amount):
-        self.account_balance -= amount
+    def make_withdraw(self, amount):
+        self.account.withdraw(amount)
         return self
     def display_user_balance(self):
-        print(f"{self.name}, {self.account_balance}")
-    def transfer(self, other_user, amount):
-        self.account_balance -= amount
-        other_user.account_balance += amount
+        print(f"{self.name}, {self.account}")
+    # def transfer(self, other_user, amount):
+    #     self.account-=amount
+    #     other_user.account += amount
 
 
 
@@ -24,15 +28,15 @@ kitty = User("Kitty Prissyboots", "KitPriss@fluff.com")
 cullen = User("Cullen Benjamin", "CBDB@howhigh.org")
 sara = User("Sara Simon", "sasimon@hotmail.com")
 
-kitty.make_deposit(400).make_deposit(600).make_deposit(190).make_withdrawl(160)
+kitty.deposit(400).deposit(600).deposit(190).make_withdraw(160)
 kitty.display_user_balance()
-print(kitty.account_balance)
+print(kitty.account)
 
-cullen.make_deposit(500).make_deposit(400).make_withdrawl(200).make_withdrawl(100)
+cullen.deposit(500).deposit(400).make_withdraw(200).make_withdraw(100)
 cullen.display_user_balance
-print(cullen.account_balance)
+print(cullen.account)
 
-sara.make_deposit(1500).make_withdrawl(300).make_withdrawl(100).make_withdrawl(100)
+sara.deposit(1500).make_withdraw(300).make_withdraw(100).make_withdraw(100)
 sara.display_user_balance
-print(sara.account_balance)
-kitty.transfer(sara, 450)
+print(sara.account)
+# kitty.transfer(sara, 450)
